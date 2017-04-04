@@ -46,3 +46,11 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     * update the state by using Extended Kalman Filter equations
   */
 }
+
+
+void KalmanFilter::Set_Q_(const MatrixXd &Q_in) {
+	Q_ = Q_in;
+}
+void KalmanFilter::Set_F_(const MatrixXd &F_in) {
+	F_ = F_in;
+}

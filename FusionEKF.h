@@ -31,6 +31,11 @@ public:
 	*/
 	KalmanFilter ekf_;
 
+	/**
+	* Function used to update the Transition matrix and the Process covariance matrix with the current Dt
+	*/
+	void UpdateMatrices(const double dt) ;
+
 private:
 	// check whether the tracking toolbox was initiallized or not (first measurement)
 	bool is_initialized_;
@@ -45,6 +50,10 @@ private:
 	Eigen::MatrixXd H_laser_;
 	Eigen::MatrixXd Hj_;
 	Eigen::MatrixXd P_;
+	Eigen::MatrixXd F_; 
+	Eigen::MatrixXd Q_; 
+	double noise_ax_;
+	double noise_ay_;
 };
 
 #endif /* FusionEKF_H_ */
