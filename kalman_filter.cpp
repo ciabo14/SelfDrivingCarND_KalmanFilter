@@ -41,10 +41,11 @@ void KalmanFilter::Update(const VectorXd &z) {
 }
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
-  /**
-  TODO:
-    * update the state by using Extended Kalman Filter equations
-  */
+	/**
+	TODO:
+	* update the state by using Extended Kalman Filter equations
+	*/
+	VectorXd y = z - H_ * x_;
 }
 
 
@@ -54,3 +55,12 @@ void KalmanFilter::Set_Q_(const MatrixXd &Q_in) {
 void KalmanFilter::Set_F_(const MatrixXd &F_in) {
 	F_ = F_in;
 }
+void KalmanFilter::Set_H_(const MatrixXd &H_in) {
+	H_ = H_in;
+}
+VectorXd KalmanFilter::ComputeMeasurementFunction(){
+	
+	VectorXd measFormatState = VectorXd(x_.size());
+
+}
+

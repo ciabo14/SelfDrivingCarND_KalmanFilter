@@ -67,7 +67,12 @@ public:
   void UpdateEKF(const VectorXd &z);
 
   void Set_Q_(const MatrixXd &Q_in);
-  void Set_F_(const MatrixXd &F_in) 
+  void Set_F_(const MatrixXd &F_in);
+  void Set_H_(const MatrixXd &H_in);
+
+private:
+	VectorXd ComputeMeasurementFunction();
+
 };
 
 #endif /* KALMAN_FILTER_H_ */

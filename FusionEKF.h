@@ -34,7 +34,8 @@ public:
 	/**
 	* Function used to update the Transition matrix and the Process covariance matrix with the current Dt
 	*/
-	void UpdateMatrices(const double dt) ;
+	void UpdateMatricesForPrediction(const double dt);
+	void UpdateMatricesForUpdate(const double dt, const Eigen::VectorXd measurement);
 
 private:
 	// check whether the tracking toolbox was initiallized or not (first measurement)

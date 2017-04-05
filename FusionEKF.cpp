@@ -111,7 +111,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	// Compute the timestamp in seconds
 	double dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
     previous_timestamp_ = measurement_pack.timestamp_;
-	UpdateMatrices(dt);
+	UpdateMatricesForPrediction(dt);
 	ekf_.Predict();
 
 	/*****************************************************************************
@@ -129,6 +129,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		ekf_.Update(measurement_pack.raw_measurements_);
 	} else {
 		// Laser updates
+		Hj_ = Tools::CalculateJacobian(ekf_.x_);
 		ekf_.UpdateEKF(measurement_pack.raw_measurements_);
 	}
 
@@ -136,7 +137,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   cout << "x_ = " << ekf_.x_ << endl;
   cout << "P_ = " << ekf_.P_ << endl;
 }
-  void FusionEKF::UpdateMatrices(const double dt) {
+void FusionEKF::UpdateMatricesForPrediction(const double dt) {
 	  
 	float dt44 = pow(dt,4)/4;
 	float dt32 = pow(dt,3)/2;
@@ -159,3 +160,31 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	ekf_.F_(1,3) = dt;
 
   }
+
+void FusionEKF::UpdateMatricesForUpdate(const double dt, const VectorXd prediction) {
+	  
+	/**
+	Computation of the JACOBIAN Matrix for the update step and update of this matrix in the EKF object
+	**/
+
+	//predicted state parameters
+	float px = prediction(0);
+	float py = prediction(1);
+	float vx = prediction(2);
+	float vy = prediction(3);
+
+	//pre-compute a set of terms to avoid repeated calculation
+	float c1 = px*px+py*py;
+	float c2 = sqrt(c1);
+	float c3 = (c1*c2);
+
+	//check division by zero
+	if(fabs(c1) < 0.0001){
+		cout << "CalculateJacobian () - Error - Division by Zero" << endl;
+	}
+
+	//compute the Jacobian matrix
+	
+	ekf_.H_
+
+}
