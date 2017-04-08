@@ -64,8 +64,8 @@ int main(int argc, char* argv[]) {
 	#endif
 
 	#ifdef DEBUG
-	in_file_name_ = "E:/Self Driving Car Nanodegree/Term 2/KFDevelopment/ekf-data/EKF_DATA/obj_pose-laser-radar-synthetic-input.txt";
-	out_file_name_ = "E:/Self Driving Car Nanodegree/Term 2/KFDevelopment/ekf-data/EKF_DATA/obj_pose-laser-radar-synthetic-output.txt";
+	in_file_name_ = "E:/Self Driving Car Nanodegree/Term 2/KFDevelopment/CarND-Extended-Kalman-Filter-Project-GITHUBDirectory/data/tmp2.txt";
+	out_file_name_ = "E:/Self Driving Car Nanodegree/Term 2/KFDevelopment/CarND-Extended-Kalman-Filter-Project-GITHUBDirectory/data/tmp2-output.txt";
 	#endif
 
 	ifstream in_file_(in_file_name_.c_str(), ifstream::in);
@@ -96,6 +96,7 @@ int main(int argc, char* argv[]) {
       // LASER MEASUREMENT
 
       // read measurements at this timestamp
+
       meas_package.sensor_type_ = MeasurementPackage::LASER;
       meas_package.raw_measurements_ = VectorXd(2);
       float x;
@@ -108,7 +109,6 @@ int main(int argc, char* argv[]) {
       measurement_pack_list.push_back(meas_package);
     } else if (sensor_type.compare("R") == 0) {
       // RADAR MEASUREMENT
-
       // read measurements at this timestamp
       meas_package.sensor_type_ = MeasurementPackage::RADAR;
       meas_package.raw_measurements_ = VectorXd(3);
@@ -121,7 +121,7 @@ int main(int argc, char* argv[]) {
       meas_package.raw_measurements_ << ro, phi, ro_dot;
       iss >> timestamp;
       meas_package.timestamp_ = timestamp;
-      measurement_pack_list.push_back(meas_package);
+	  measurement_pack_list.push_back(meas_package);
     }
 
     // read ground truth data to compare later
@@ -135,7 +135,7 @@ int main(int argc, char* argv[]) {
     iss >> vy_gt;
     gt_package.gt_values_ = VectorXd(4);
     gt_package.gt_values_ << x_gt, y_gt, vx_gt, vy_gt;
-    gt_pack_list.push_back(gt_package);
+	gt_pack_list.push_back(gt_package);
   }
 
   // Create a Fusion EKF instance
@@ -182,8 +182,7 @@ int main(int argc, char* argv[]) {
   }
 
   // compute the accuracy (RMSE)
-  Tools tools;
-  cout << "Accuracy - RMSE:" << endl << tools.CalculateRMSE(estimations, ground_truth) << endl;
+  cout << "Accuracy - RMSE:" << endl << Tools::CalculateRMSE(estimations, ground_truth) << endl;
 
   // close files
   if (out_file_.is_open()) {
@@ -193,6 +192,6 @@ int main(int argc, char* argv[]) {
   if (in_file_.is_open()) {
     in_file_.close();
   }
-
+  
   return 0;
 }

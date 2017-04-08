@@ -21,7 +21,7 @@ public:
 
   // measurement matrix
   MatrixXd H_;
-
+  
   // measurement covariance matrix
   MatrixXd R_;
 
@@ -72,7 +72,6 @@ public:
 
 private:
 	VectorXd ComputeMeasurementFunction();
-
 };
 
 #endif /* KALMAN_FILTER_H_ */
