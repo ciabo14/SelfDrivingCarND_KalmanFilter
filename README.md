@@ -18,9 +18,9 @@ In order to execute the executable in the executable file you should follow the 
 **Usage instructions:**
 
 ```c++
-./ExtendedKF.exe \n
-path/to/input.txt \n
-path/to/output.txt \n
+./ExtendedKF.exe
+path/to/input.txt
+path/to/output.txt
 [r|l|b] for [radar only|laser only|both]
 ```
 The executables is compiled in order to be executed with the single usage for lidar or radar or with the usage of both. The usage of a single sensor will select data from the input file in order to use only L|R or data from all the sensors.
