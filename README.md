@@ -28,38 +28,19 @@ The executables is compiled in order to be executed with the single usage for li
 
 The computed RMSE, also output of the executable, is stricty dependant on the sensor used. The results for the provided files are:
 
-1. INPUT file 1
-  a.  LASER ONLY
-  Accuracy - RMSE (px,py,vx,vy) respectively:
-  0.0989253
-  0.117927
-  0.613519
-  0.551892
-  b.  RADAR ONLY
-  Accuracy - RMSE (px,py,vx,vy) respectively:
-  0.161012
-  0.167555
-  0.609599
-  0.576283
-  c.  BOTH SENSORS 
-  Accuracy - RMSE (px,py,vx,vy) respectively:
-  0.0667526
-  0.0604895
-  0.53823
-  0.541913
+1. INPUT file 2
+
+Sensor  |     px     |     py     |     vx     |     vy     |
+------- | ---------- | ---------- | ---------- | ---------- |
+LASER   | 0.0989253  |  0.117927  |  0.613519  |  0.551892  |
+RADAR   |  0.161012  |  0.167555  |  0.609599  |  0.551892  |
+BOTH    | 0.0667526  |  0.0604895 |   0.53823  |  0.541913  |
+
 2. INPUT file 2
-  a.  LASER ONLY
-  0.218625
-  0.195462
-  0.528297
-  0.422171
-  b.  RADAR ONLY
-  0.212349
-  0.237221
-  0.116234
-  0.183869
-  c.  BOTH SENSORS
-  0.199216
-  0.19122
-  0.41498
-  0.418222
+
+Sensor  |     px     |     py     |     vx     |     vy     |
+------- | ---------- | ---------- | ---------- | ---------- |
+LASER   |  0.218625  |  0.195462  |  0.528297  |  0.422171  |
+RADAR   |  0.212349  |  0.237221  |  0.116234  |  0.183869  |
+BOTH    |  0.199216  |   0.19122  |   0.41498  |  0.418222  |
+
